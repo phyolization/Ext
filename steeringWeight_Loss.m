@@ -1,5 +1,5 @@
 function [SW, SigLam] = steeringWeight_Loss(sigma,varargin)
-%STEERINGWEIGHT calculates the steering weight of an assemblage
+% STEERINGWEIGHT_Loss calculates the steering weight of an assemblage with loss-counted
 % This function has one required argument:
 %  sigma: a 4-D array, containing the members of the assemblage. The first 
 %   two dimensions contain the (unnormalised) quantum states, while the
@@ -26,8 +26,9 @@ Ndet = (pri)^ma; % number of deterministic behaviours
 
 SingleParty = zeros(pri,ma,Ndet); % initialise array
 for lam = 0:Ndet-1
-    lamdec = dec2base(lam,pri,ma)-'0'; 	% generates the string of outcomes a 
-										%(for each x), for the given variable lam
+    lamdec = dec2base(lam,pri,ma)-'0'; 	
+     % generates the string of outcomes a 
+     % (for each x), for the given variable lam
     for x = 1:ma
         for a = 0:pri-1
 ;           SingleParty(a+1,x,lam+1) = (lamdec(x) == a);...   +(lamdec(x) == a).*(1-He); %
@@ -61,12 +62,10 @@ Sigma(:,:,pri,:)=repmat(sigR.*(1-He),[1,1,1,ma]);
 
 cvx_begin sdp quiet
 
-    if oa>2, cvx_solver sedumi, end
-    
     variable SigLam(dB,dB,Ndet) hermitian semidefinite
     % members of the steering functional
 
-    maximise real(sum(reshape(SigLam.*repmat(eye(dB),[1,1,Ndet]),1,[])))
+    maximise real(sum(reshape(SigLam.*repmat(eye(dB),[1,1,Ndet]),1,dB*dB*Ndet)))
     
     subject to
  
