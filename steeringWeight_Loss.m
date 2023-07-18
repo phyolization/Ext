@@ -15,7 +15,7 @@ function [SW, SigLam] = steeringWeight_Loss(sigma,varargin)
 % ->requires: CVX (http://cvxr.com/cvx/), QETLAB (http://www.qetlab.com)
 % ->requires: steeringreview (https://git.io/vax96)
 % ->authors: Paul Skrzypczyk, Daniel Cavalcanti (Modified by Qiang Z)
-% ->last updated: Jan 10, 2021
+% ->last updated: Jan 10, 2022
 
 [He] = opt_args({1,1},varargin{:});
 
