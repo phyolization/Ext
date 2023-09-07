@@ -1,10 +1,9 @@
 function [SW, SigLam] = steeringWeight_Loss(sigma,varargin)
-% STEERINGWEIGHT_Loss calculates the steering weight of an assemblage with loss-counted
+% STEERINGWEIGHT_Loss calculates the steering weight of an assemblage with loss counted
 % This function has one required argument:
-%  sigma: a 4-D array, containing the members of the assemblage. The first 
-%   two dimensions contain the (unnormalised) quantum states, while the
-%   remaining two dimensions are (a,x), such that sigma(:,:,a,x) =
-%   \sigma_a|x. 
+%  sigma: a 4-D array, containing the members of the assemblage. 
+% The first two dimensions contain the (unnormalised) quantum states, while the
+%   remaining two dimensions are (a,x), such that sigma(:,:,a,x) = \sigma_a|x. 
 %
 % SW = steeringWeight_Loss(sigma,He) returns the steering weight SW of the
 % assemblage sigma with loss counted.
